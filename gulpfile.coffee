@@ -18,7 +18,7 @@ gulp.task 'test', () ->
 
 gulp.task 'test-watch', ->
   gulp.watch [
-    'src/**',
+    'lib/**',
     'test/**'
     ], ['test']
 

@@ -27,19 +27,24 @@ filter  : subset of methods to copy
 context : the context the methods will be applied to
 ###
 bindMethods = (receiver, source, filter, context) ->
-  extractedMethods = getMethods source, filter
+  methodFilter = if _.isArray filter then filter else _.values filter
+  extractedMethods = getMethods source, methodFilter
+
+  if (_.isObject filter) and not (_.isArray filter) then methodMap = _.invert filter else null
+
   _.each extractedMethods, (method, name) ->
+    if _.isObject methodMap then name = methodMap[name]
     receiver[name] = bindMethodContext(method, context)
   receiver
 
 
 module.exports =
 
-  mix: (receiver, source, filter = []) ->
+  mix: (receiver, source, filter) ->
     _.extend receiver, getMethods(source, filter)
 
-  forwardMethods: (receiver, source, filter = []) ->
+  forward: (receiver, source, filter) ->
     bindMethods receiver, source, filter, source
 
-  delegateMethods: (receiver, source, filter = []) ->
+  delegate: (receiver, source, filter) ->
     bindMethods receiver, source, filter, receiver
