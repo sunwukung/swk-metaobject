@@ -1,6 +1,6 @@
 # metaobject
 
-This library is a lightweight implementation of the technique describe by Reginald Braithwaite in his book (Javascript Spessore)[https://leanpub.com/javascript-spessore]
+This library is a lightweight implementation of the technique describe by Reginald Braithwaite in his book [Javascript Spessore](https://leanpub.com/javascript-spessore)
 
 ## Overview
 Metaobjects are an object creation pattern that allow the user to generate objects that either forward or delegate their methods to other objects
