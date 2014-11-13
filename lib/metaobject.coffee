@@ -6,17 +6,19 @@ this can be used as an alternative to traditional inheritance patterns
 getMethods = (host, filter = []) ->
   props = if filter.length > 0 then filter else _.keys host
   methods = {}
-  _.each(props, (prop) ->
+  for prop in props
     if _.isFunction(host[prop]) and host.hasOwnProperty(prop) then methods[prop] = host[prop]
-  )
   methods
 
 ###
 returns a function partially applied to the given context
 ###
-bindMethodContext = (method, context) ->
+bindMethodContext = (method, receiver, source, context) ->
   (args...) ->
-    method.apply context, args
+    ret = method.apply context, args
+    if (source is context) and (ret is source)
+      ret = receiver
+    ret
 
 ###
 extracts methods from source and assigns them to receiver
@@ -34,7 +36,7 @@ bindMethods = (receiver, source, filter, context) ->
 
   _.each extractedMethods, (method, name) ->
     if _.isObject methodMap then name = methodMap[name]
-    receiver[name] = bindMethodContext(method, context)
+    receiver[name] = bindMethodContext method, receiver, source, context
   receiver
 
 

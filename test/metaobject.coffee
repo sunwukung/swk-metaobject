@@ -9,7 +9,7 @@ source =
 doThisSpy = sinon.spy source, 'doThis'
 doThatSpy = sinon.spy source, 'doThat'
 
-describe.only "metaobject", ->
+describe "metaobject", ->
 
   it "is an object", ->
 
@@ -50,6 +50,18 @@ describe.only "metaobject", ->
         forwarded = metaobject.forward receiver, source, { executeThis: 'doThis' }
         expect(forwarded.executeThis).to.be.a "function"
 
+      it "if the source chains the metaobject will be returned", ->
+        receiver = { prop: "foo" }
+        _source =
+          prop: "bar"
+          doThis: -> return @
+          doThat: -> return @
+
+        forwarded = metaobject.forward receiver, _source
+        subject = forwarded.doThis()
+
+        expect(subject).to.equal receiver
+
 
     describe "delegate", ->
       it "is a function", ->
@@ -84,3 +96,15 @@ describe.only "metaobject", ->
         receiver = {}
         delegated = metaobject.delegate receiver, source, { executeThis: 'doThis' }
         expect(delegated.executeThis).to.be.a "function"
+
+
+      it "if the source chains the metaobject will be returned", ->
+        receiver = { prop: "foo" }
+        _source =
+          prop: "bar"
+          doThis: -> return @
+          doThat: -> return @
+
+        forwarded = metaobject.delegate receiver, _source
+        subject = forwarded.doThis()
+
