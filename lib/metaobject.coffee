@@ -2,7 +2,6 @@
 this library provides a means to create objects that proxy other objects
 this can be used as an alternative to traditional inheritance patterns
 ###
-
 t = require "swk-types"
 {methods, keys, values, invert} = require "./helpers"
 
@@ -16,6 +15,7 @@ bindMethodContext = (method, receiver, source, context) ->
     if (source is context) and (ret is source)
       ret = receiver
     ret
+
 
 ###
 extracts methods from source and assigns them to receiver
