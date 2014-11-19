@@ -1,6 +1,6 @@
 {
   "name": "swk-metaobject",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "functional alternative to inheritance",
   "main": "index.js",
   "repository": {
