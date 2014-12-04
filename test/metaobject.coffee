@@ -1,6 +1,6 @@
 expect = require("chai").expect
 sinon = require "sinon"
-metaobject = require "../lib/metaobject"
+metaobject = require "../index"
 source =
   property: "foo"
   doThis: -> @property

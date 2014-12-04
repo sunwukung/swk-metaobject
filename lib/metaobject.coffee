@@ -29,7 +29,8 @@ bindMethods = (receiver, source, filter, context) ->
   methodFilter = if t.is "array", filter then filter else values filter
   extractedMethods = methods source, methodFilter
 
-  if (t.is "object", filter) and not (t.is "array", filter) then methodMap = invert filter else null
+  if (t.is "object", filter) and not (t.is "array", filter)
+    methodMap = invert(filter) or null
 
   for name, method of extractedMethods
     if t.is "object", methodMap then name = methodMap[name]
