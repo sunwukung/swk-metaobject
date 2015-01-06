@@ -1,5 +1,7 @@
 # metaobject
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sunwukung/swk-metaobject?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This library is a lightweight implementation of the technique describe by Reginald Braithwaite in his book [Javascript Spessore](https://leanpub.com/javascript-spessore)
 
 ## Overview
